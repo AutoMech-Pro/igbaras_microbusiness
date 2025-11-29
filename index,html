@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Igbaras Micro-Business Landscape 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Config & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-bg': '#F4F7F6', 
+                        'brand-primary': '#FF6B6B', // Vibrant Coral
+                        'brand-secondary': '#4ECDC4', // Energetic Turquoise
+                        'brand-accent': '#FFD166', // Bright Yellow
+                        'brand-dark': '#292F36', // Charcoal
+                        'brand-light': '#FFFFFF'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- Layout & Container Fixes --- */
+        .chart-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            flex-grow: 1;
+            min-height: 300px;
+        }
+
+        /* Specific fix for horizontal bar chart to allow label space */
+        .chart-container-tall {
+            min-height: 400px;
+        }
+
+        /* --- Flowchart Improvements --- */
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .flow-step {
+            position: relative;
+            background: white;
+            border-left: 5px solid #FF6B6B;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 280px;
+            transition: transform 0.2s;
+            z-index: 10;
+        }
+        
+        .flow-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .flow-arrow-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #CBD5E1;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .flow-container {
+                flex-direction: row;
+                justify-content: center;
+                align-items: stretch;
+            }
+            .flow-step {
+                width: 200px; /* Fixed width for better alignment */
+            }
+        }
+
+        /* --- Typography Helpers --- */
+        .text-shadow-sm {
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-dark font-sans leading-relaxed selection:bg-brand-secondary selection:text-white">
+
+    <!-- HEADER -->
+    <header class="bg-gradient-to-r from-brand-secondary to-teal-400 text-brand-dark pt-12 pb-16 px-4 relative shadow-xl">
+        <div class="max-w-7xl mx-auto relative z-10 text-center md:text-left">
+            <span class="inline-block py-1 px-3 rounded bg-white/30 backdrop-blur-sm text-brand-dark font-bold text-xs tracking-wider mb-4 uppercase shadow-sm">
+                November 2025 • Economic Forecast
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-2 text-white text-shadow-sm">
+                Micro-Business <br class="md:hidden">Landscape
+            </h1>
+            <h2 class="text-2xl md:text-3xl font-light text-white opacity-90 mb-6">
+                Igbaras, Iloilo
+            </h2>
+            <p class="max-w-2xl text-white/90 text-lg font-medium leading-relaxed">
+                Visualizing the transition to "Agri-Tech" and high-value "Eco-Tourism" in the region.
+            </p>
+        </div>
+        
+        <!-- Decorative Elements (CSS Shapes) -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-accent rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-y-1/2 translate-x-1/2 animate-pulse"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-brand-primary rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-y-1/2 -translate-x-1/2"></div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20 pb-20 space-y-12">
+
+        <!-- SECTION 1: KEY METRICS GRID -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-brand-primary flex flex-col justify-between hover:shadow-xl transition-shadow">
+                <div>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">New Registrations</h3>
+                    <div class="mt-2 flex items-baseline">
+                        <span class="text-4xl font-extrabold text-brand-dark">487</span>
+                        <span class="ml-2 text-sm font-semibold text-green-500 bg-green-50 px-2 py-0.5 rounded-full">↑ 12%</span>
+                    </div>
+                </div>
+                <p class="mt-4 text-xs text-gray-500">vs. Previous Year (2024)</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-brand-secondary flex flex-col justify-between hover:shadow-xl transition-shadow">
+                <div>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Avg. Daily Revenue</h3>
+                    <div class="mt-2 flex items-baseline">
+                        <span class="text-4xl font-extrabold text-brand-dark">₱3.2k</span>
+                    </div>
+                </div>
+                <p class="mt-4 text-xs text-gray-500">Top 20% Performing MSMEs</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-brand-accent flex flex-col justify-between hover:shadow-xl transition-shadow">
+                <div>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tourist Footfall</h3>
+                    <div class="mt-2 flex items-baseline">
+                        <span class="text-4xl font-extrabold text-brand-dark">42k+</span>
+                        <span class="ml-2 text-sm font-semibold text-green-500 bg-green-50 px-2 py-0.5 rounded-full">YTD</span>
+                    </div>
+                </div>
+                <p class="mt-4 text-xs text-gray-500">Driven by Nadsadjan Falls</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-gray-800 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                <div>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Digital Adoption</h3>
+                    <div class="mt-2 flex items-baseline">
+                        <span class="text-4xl font-extrabold text-brand-dark">76%</span>
+                    </div>
+                </div>
+                <p class="mt-4 text-xs text-gray-500">Accept GCash / Maya payments</p>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SECTOR & PROFITABILITY (Side by Side) -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Sector Composition -->
+            <div class="chart-card">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold text-brand-dark">Economic Composition</h3>
+                    <p class="text-sm text-gray-500">Percentage of Registered Businesses by Sector</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="sectorChart"></canvas>
+                </div>
+                <div class="mt-4 text-sm text-gray-600 bg-gray-50 p-3 rounded border border-gray-100">
+                    <strong>Insight:</strong> "Value-Added Processing" (35%) has overtaken traditional retail, indicating a shift towards manufacturing.
+                </div>
+            </div>
+
+            <!-- Profitability Ranking (Improved Label Layout) -->
+            <div class="chart-card">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold text-brand-dark">Highest Profit Margins</h3>
+                    <p class="text-sm text-gray-500">Top 5 Niche Markets (Net Margin %)</p>
+                </div>
+                <div class="chart-container chart-container-tall">
+                    <canvas id="profitChart"></canvas>
+                </div>
+                <div class="mt-4 text-sm text-gray-600 bg-gray-50 p-3 rounded border border-gray-100">
+                    <strong>Insight:</strong> Export-grade Coffee Processing yields the highest ROI (42%) despite higher startup costs.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: WORKFLOW DIAGRAM (Fixed Layout) -->
+        <section class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+            <div class="text-center mb-10">
+                <span class="text-brand-primary font-bold tracking-wide uppercase text-sm">The 2025 Winning Model</span>
+                <h2 class="text-3xl font-extrabold text-brand-dark mt-2">The "Golden Bean" Value Chain</h2>
+                <p class="text-gray-500 mt-2 max-w-2xl mx-auto">
+                    A streamlined process flow for the integrated Coffee & Cacao enterprise, the most successful business model in the region.
+                </p>
+            </div>
+
+            <!-- Improved Flow Layout -->
+            <div class="flow-container">
+                
+                <!-- Node 1 -->
+                <div class="flow-step border-l-brand-primary">
+                    <div class="text-3xl mb-3">🌱</div>
+                    <h4 class="font-bold text-lg text-brand-dark">Sourcing</h4>
+                    <p class="text-xs text-gray-500 mt-1">Contract Farming in<br>Brgy. Passi Highlands</p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="flow-arrow-container">
+                    <span class="hidden md:block">▶</span> <!-- Desktop Right Arrow -->
+                    <span class="md:hidden">▼</span> <!-- Mobile Down Arrow -->
+                </div>
+
+                <!-- Node 2 -->
+                <div class="flow-step border-l-brand-secondary">
+                    <div class="text-3xl mb-3">⚙️</div>
+                    <h4 class="font-bold text-lg text-brand-dark">Processing</h4>
+                    <p class="text-xs text-gray-500 mt-1">Solar Drying &<br>Artisan Roasting</p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="flow-arrow-container">
+                    <span class="hidden md:block">▶</span>
+                    <span class="md:hidden">▼</span>
+                </div>
+
+                <!-- Node 3 -->
+                <div class="flow-step border-l-brand-accent">
+                    <div class="text-3xl mb-3">📦</div>
+                    <h4 class="font-bold text-lg text-brand-dark">Packaging</h4>
+                    <p class="text-xs text-gray-500 mt-1">Eco-friendly branding<br>for "Pasalubong" market</p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="flow-arrow-container">
+                    <span class="hidden md:block">▶</span>
+                    <span class="md:hidden">▼</span>
+                </div>
+
+                <!-- Node 4 -->
+                <div class="flow-step border-l-gray-800">
+                    <div class="text-3xl mb-3">🌏</div>
+                    <h4 class="font-bold text-lg text-brand-dark">Distribution</h4>
+                    <p class="text-xs text-gray-500 mt-1">Direct-to-Consumer<br>& Iloilo City Cafes</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4: 3D OPPORTUNITY MATRIX -->
+        <section class="bg-brand-dark rounded-2xl shadow-2xl overflow-hidden text-white">
+            <div class="p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <div class="lg:col-span-1 flex flex-col justify-center">
+                    <h2 class="text-3xl font-bold text-white mb-4">Opportunity Matrix</h2>
+                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                        A 3D analysis correlating <strong>Capital Required</strong>, <strong>ROI</strong>, and <strong>Market Risk</strong>.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <span class="w-3 h-3 rounded-full bg-brand-primary mr-3"></span>
+                            <span class="text-sm">High Risk, High Reward</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-3 h-3 rounded-full bg-brand-secondary mr-3"></span>
+                            <span class="text-sm">Balanced / Stable</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-3 h-3 rounded-full bg-brand-accent mr-3"></span>
+                            <span class="text-sm">Low Entry Barrier</span>
+                        </div>
+                    </div>
+                    <p class="mt-8 text-xs italic text-gray-500">
+                        * Drag the chart to rotate and explore data points.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-2 bg-white/5 rounded-xl border border-white/10 p-2">
+                    <!-- Plotly Container -->
+                    <div id="opportunityPlot" class="w-full h-[450px]"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 5: TOURISM TRENDS -->
+        <section class="grid grid-cols-1">
+            <div class="chart-card">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-brand-dark">Tourism Growth Trajectory</h3>
+                        <p class="text-sm text-gray-500">Visitor Count vs. Local Revenue (2021-2025)</p>
+                    </div>
+                    <div class="mt-2 md:mt-0 text-right">
+                        <span class="text-2xl font-bold text-brand-primary">₱16.8M</span>
+                        <div class="text-xs text-gray-400">Projected Revenue 2025</div>
+                    </div>
+                </div>
+                <div class="chart-container" style="height: 350px;">
+                    <canvas id="tourismChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-100 py-10 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h3 class="font-bold text-brand-dark text-lg mb-2">Igbaras Micro-Business 2025</h3>
+            <p class="text-sm text-gray-500 mb-6">Generated for Educational Analysis • November 29, 2025</p>
+            <div class="flex justify-center gap-4 text-xs font-semibold text-brand-secondary uppercase tracking-widest">
+                <span>Agri-Tech</span>
+                <span>•</span>
+                <span>Eco-Tourism</span>
+                <span>•</span>
+                <span>Sustainability</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- 1. Label Wrapping Logic (Improved) ---
+        // Splits strings into arrays of strings for Chart.js to render as multi-line
+        function formatLabel(str, maxLen = 15) {
+            if (str.length <= maxLen) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= maxLen) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- 2. Chart Configurations ---
+
+        Chart.defaults.font.family = "'Poppins', sans-serif";
+        Chart.defaults.color = '#4B5563';
+
+        // --- A. SECTOR CHART (Doughnut) ---
+        const ctxSector = document.getElementById('sectorChart').getContext('2d');
+        const sectorLabels = [
+            "Value-Added Processing", 
+            "Traditional Retail", 
+            "Eco-Tourism Services", 
+            "Personal & Digital Svc", 
+            "Handicrafts & Weaving"
+        ];
+        
+        new Chart(ctxSector, {
+            type: 'doughnut',
+            data: {
+                labels: sectorLabels,
+                datasets: [{
+                    data: [35, 25, 20, 12, 8],
+                    backgroundColor: ['#FF6B6B', '#FFD166', '#4ECDC4', '#292F36', '#9CA3AF'],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                    padding: 20 // Prevents hover clipping
+                },
+                plugins: {
+                    legend: {
+                        position: window.innerWidth < 768 ? 'bottom' : 'right', // Responsive position
+                        labels: {
+                            boxWidth: 12,
+                            padding: 20,
+                            font: { size: 12 }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        titleColor: '#1F2937',
+                        bodyColor: '#1F2937',
+                        borderColor: '#E5E7EB',
+                        borderWidth: 1,
+                        padding: 10,
+                        callbacks: {
+                            label: function(context) {
+                                return ` ${context.label}: ${context.raw}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // --- B. PROFITABILITY CHART (Horizontal Bar) ---
+        const ctxProfit = document.getElementById('profitChart').getContext('2d');
+        // Pre-process labels to be multi-line arrays
+        const rawProfitLabels = [
+            "Export-Grade Coffee Processing",
+            "Glamping & Guided Eco-Tours",
+            "Native Delicacy (Butong-butong)",
+            "Bamboo & Hablon Crafts",
+            "Vegetable Trading Post"
+        ];
+        const profitLabels = rawProfitLabels.map(l => formatLabel(l, 20)); // Wrap at 20 chars
+
+        new Chart(ctxProfit, {
+            type: 'bar',
+            data: {
+                labels: profitLabels,
+                datasets: [{
+                    label: 'Net Profit Margin',
+                    data: [42, 38, 30, 25, 18],
+                    backgroundColor: '#4ECDC4',
+                    borderRadius: 4,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                    padding: { left: 0, right: 20 } // Ensure right side value labels fit
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { callback: (val) => val + '%' }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { size: 11, lineHeight: 1.2 },
+                            autoSkip: false, // Force show all labels
+                            crossAlign: 'far' // Align multiline text nicely
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#292F36',
+                        callbacks: {
+                            title: (items) => rawProfitLabels[items[0].dataIndex], // Show full text in tooltip
+                            label: (item) => ` Margin: ${item.raw}%`
+                        }
+                    }
+                }
+            }
+        });
+
+        // --- C. TOURISM CHART (Mixed) ---
+        const ctxTourism = document.getElementById('tourismChart').getContext('2d');
+        new Chart(ctxTourism, {
+            type: 'bar',
+            data: {
+                labels: ["2021", "2022", "2023", "2024", "2025 (Est)"],
+                datasets: [
+                    {
+                        label: 'Visitors',
+                        data: [5000, 12000, 25000, 34000, 42000],
+                        backgroundColor: '#FF6B6B',
+                        order: 2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Revenue (M PHP)',
+                        data: [1.2, 3.5, 8.1, 12.5, 16.8],
+                        type: 'line',
+                        borderColor: '#292F36',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#292F36',
+                        pointRadius: 5,
+                        tension: 0.3,
+                        order: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        grid: { borderDash: [5, 5] },
+                        title: { display: true, text: 'Visitor Count' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        grid: { drawOnChartArea: false },
+                        title: { display: true, text: 'Revenue (M PHP)' }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: {
+                        backgroundColor: '#292F36',
+                        padding: 12
+                    }
+                }
+            }
+        });
+
+        // --- D. 3D OPPORTUNITY PLOT (Plotly) ---
+        const trace3d = {
+            x: [6, 8, 3, 7, 2, 1, 4, 7, 2], // Capital
+            y: [8, 5, 4, 7, 6, 8, 9, 6, 5], // ROI
+            z: [4, 2, 6, 5, 3, 2, 3, 7, 3], // Risk
+            mode: 'markers+text',
+            type: 'scatter3d',
+            text: [
+                "Coffee<br>Roasting", "Rice<br>Trading", "Sari-Sari", 
+                "Homestay", "Handicrafts", "Tour<br>Guiding", 
+                "Ginger<br>Proc.", "Livestock", "E-Load"
+            ],
+            textposition: 'top center', // Fix overlap
+            marker: {
+                size: 10,
+                color: [
+                    '#FF6B6B', '#4ECDC4', '#FFD166', 
+                    '#FF6B6B', '#4ECDC4', '#FFD166', 
+                    '#FF6B6B', '#292F36', '#4ECDC4'
+                ],
+                opacity: 0.9,
+                line: { color: 'white', width: 1 }
+            },
+            textfont: {
+                family: 'Poppins',
+                size: 10,
+                color: '#ffffff' // White text for dark bg
+            },
+            hoverinfo: 'x+y+z+text',
+            hovertemplate: 
+                '<b>%{text}</b><br>' +
+                'Capital: %{x}/10<br>' +
+                'ROI: %{y}/10<br>' +
+                'Risk: %{z}/10<extra></extra>'
+        };
+
+        const layout3d = {
+            margin: { l: 0, r: 0, b: 0, t: 0 },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            scene: {
+                xaxis: { title: 'Capital', color: 'white', titlefont: {size: 10} },
+                yaxis: { title: 'ROI', color: 'white', titlefont: {size: 10} },
+                zaxis: { title: 'Risk', color: 'white', titlefont: {size: 10} },
+                gridcolor: 'rgba(255,255,255,0.1)',
+                camera: { eye: {x: 1.6, y: 1.6, z: 1.4} } // Zoom out slightly
+            },
+            showlegend: false
+        };
+
+        Plotly.newPlot('opportunityPlot', [trace3d], layout3d, {displayModeBar: false, responsive: true});
+
+    </script>
+</body>
+</html>
